@@ -27,7 +27,7 @@ namespace Components
 		return Game::FireWeaponMelee(ent, gameTime);
 	}
 
-	bool AntiLag::ShouldRun(uintptr_t stack, uintptr_t returnAddress, Game::gentity_s*& attacker)
+	bool AntiLag::ShouldRewind(uintptr_t stack, uintptr_t returnAddress, Game::gentity_s*& attacker)
 	{
 		constexpr uintptr_t Bullet_FireRet = 0x004402E0;
 		constexpr uintptr_t Run_MeleeRet = 0x00501A07;
@@ -91,24 +91,25 @@ namespace Components
 
 	void __cdecl AntiLag::G_AntiLagRewindClientPos(int gameTime, Game::AntilagClientStore* antilagStore)
 	{
-		std::array<bool, 18> clientsMoved;
-		std::array<Game::vec3_t, 18> clientsAngles;
-		std::array<Game::vec3_t, 18> clientsPositions;
-
-		int antiLagMode = G_AntiLag.get<int>();
+		const int antiLagMode = G_AntiLag.get<int>();
 		if (antiLagMode == 0)
 			return;
 
 		Game::gentity_s* attacker = nullptr;
 
 		// get attacker, check if we should run.
-		if (!ShouldRun(reinterpret_cast<uintptr_t>(_AddressOfReturnAddress()), reinterpret_cast<uintptr_t>(_ReturnAddress()), attacker))
+		if (!ShouldRewind(reinterpret_cast<uintptr_t>(_AddressOfReturnAddress()), reinterpret_cast<uintptr_t>(_ReturnAddress()), attacker))
 			return;
 
 		antilagStore->Reset();
 
-		int deltaTime = Game::level->time - gameTime;
-		int targetTime = deltaTime > 400 ? (Game::level->time - 400) : gameTime;
+		// GetClientPositionsAtTime results arrays.
+		std::array<bool, 18> clientsMoved;
+		std::array<Game::vec3_t, 18> clientsAngles;
+		std::array<Game::vec3_t, 18> clientsPositions;
+
+		const int deltaTime = Game::level->time - gameTime;
+		const int targetTime = deltaTime > 400 ? (Game::level->time - 400) : gameTime;
 
 		clientsMoved.fill(false);
 
