@@ -10,13 +10,8 @@ namespace Components
 	void __cdecl AntiLag::FireWeapon(Game::gentity_s* ent, int gameTime, int eventType)
 	{
 		if (G_AntiLag.get<int>() == 0)
-		{
-			// i dont think this is a good idea to do.
-			// breaks the logic of antilag, is there any point of having this?
 			gameTime = Game::level->time;
-		}
-
-		if (G_AntiLagDebug.get<int>() != 0)
+		else if (G_AntiLagDebug.get<int>() != 0)
 			Logger::Debug("FireWeapon: at tick {}, level.time {}\n", gameTime, Game::level->time);
 
 		return Game::FireWeapon(ent, gameTime, eventType);
@@ -25,13 +20,8 @@ namespace Components
 	void __cdecl AntiLag::FireWeaponMelee(Game::gentity_s* ent, int gameTime)
 	{
 		if (G_AntiLag.get<int>() == 0)
-		{
-			// i dont think this is a good idea to do.
-			// breaks the logic of antilag, is there any point of having this?
 			gameTime = Game::level->time;
-		}
-
-		if (G_AntiLagDebug.get<int>() != 0)
+		else if (G_AntiLagDebug.get<int>() != 0)
 			Logger::Debug("FireWeaponMelee: at tick {}, level.time {}\n", gameTime, Game::level->time);
 
 		return Game::FireWeaponMelee(ent, gameTime);
