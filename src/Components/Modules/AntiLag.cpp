@@ -108,14 +108,14 @@ namespace Components
 		antilagStore->Reset();
 
 		int deltaTime = Game::level->time - gameTime;
-		int target_time = deltaTime > 400 ? Game::level->time : gameTime;
+		int targetTime = deltaTime > 400 ? (Game::level->time - 400) : gameTime;
 
 		clientsMoved.fill(false);
 
-		if (!Game::GetClientPositionAtTime(target_time, clientsPositions.data(), clientsAngles.data(), clientsMoved.data()))
+		if (!Game::GetClientPositionAtTime(targetTime, clientsPositions.data(), clientsAngles.data(), clientsMoved.data()))
 		{
 			if (G_AntiLagDebug.get<int>() != 0)
-				Logger::Debug("GetClientPositionAtTime failed: tick {}, level.time {}\n", target_time, Game::level->time);
+				Logger::Debug("GetClientPositionAtTime failed: tick {}, level.time {}\n", targetTime, Game::level->time);
 
 			return;
 		}
@@ -162,7 +162,7 @@ namespace Components
 			Game::SV_LinkEntity(&ent);
 
 			if (G_AntiLagDebug.get<int>() == 2)
-				Logger::Debug("antiLag: moving entity ({}) tick {}, level.time {}\n", i, target_time, Game::level->time);
+				Logger::Debug("antiLag: moving entity ({}) tick {}, level.time {}\n", i, targetTime, Game::level->time);
 
 			antilagStore->clientMoved[i] = true;
 		}
