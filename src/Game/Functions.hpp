@@ -614,6 +614,9 @@ namespace Game
 	typedef void(*longjmp_internal_t)(jmp_buf env, int status);
 	extern longjmp_internal_t longjmp_internal;
 
+	typedef bool(*OnSameTeam_t)(gentity_s* a1, gentity_s* a2);
+	extern OnSameTeam_t OnSameTeam;
+
 	constexpr std::size_t STATIC_MAX_LOCAL_CLIENTS = 1;
 	constexpr std::size_t MAX_LOCAL_CLIENTS = 1;
 	constexpr std::size_t MAX_CLIENTS = 18;

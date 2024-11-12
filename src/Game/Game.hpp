@@ -27,14 +27,26 @@ namespace Game
 
 	typedef gentity_s* (*G_Spawn_t)();
 	extern G_Spawn_t G_Spawn;
-	
-	typedef gentity_s* (*G_TempEntity_t)(float *origin, Game::entity_event_t  entity);
+
+	typedef gentity_s* (*G_TempEntity_t)(float* origin, Game::entity_event_t  entity);
 	extern G_TempEntity_t G_TempEntity;
-	
-	typedef void (*G_AddEvent_t)(gentity_s *ent, entity_event_t event, unsigned int eventParm);
+
+	typedef void (*G_AddEvent_t)(gentity_s* ent, entity_event_t event, unsigned int eventParm);
 	extern G_AddEvent_t G_AddEvent;
 
-	
+	typedef void (*FireWeapon_t)(Game::gentity_s* ent, int gameTime, int a3);
+	extern FireWeapon_t FireWeapon;
+
+	typedef void (*FireWeaponMelee_t)(Game::gentity_s* ent, int gameTime);
+	extern FireWeaponMelee_t FireWeaponMelee;
+
+	typedef bool (*GetClientPositionAtTime_t)(int targetTime, vec3_t* clientsOrigins, vec3_t* clientsAngles, bool* clientsMoved);
+	extern GetClientPositionAtTime_t GetClientPositionAtTime;
+
+	typedef void (*SV_LinkEntity_t)(Game::gentity_s* ent);
+	extern SV_LinkEntity_t SV_LinkEntity;
+
+
 
 	typedef void(*G_FreeEntity_t)(gentity_s* ed);
 	extern G_FreeEntity_t G_FreeEntity;
@@ -48,7 +60,7 @@ namespace Game
 	typedef void(*G_PrintEntities_t)();
 	extern G_PrintEntities_t G_PrintEntities;
 
-	typedef const char*(*G_GetEntityTypeName_t)(const gentity_s* ent);
+	typedef const char* (*G_GetEntityTypeName_t)(const gentity_s* ent);
 	extern G_GetEntityTypeName_t G_GetEntityTypeName;
 
 	typedef int(*G_LocalizedStringIndex_t)(const char* string);

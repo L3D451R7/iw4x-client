@@ -14,6 +14,13 @@ namespace Game
 	G_PrintEntities_t G_PrintEntities = G_PrintEntities_t(0x4E6A50);
 	G_GetEntityTypeName_t G_GetEntityTypeName = G_GetEntityTypeName_t(0x4EB810);
 
+	FireWeapon_t FireWeapon = FireWeapon_t(0x4A4D50);
+	FireWeaponMelee_t FireWeaponMelee = FireWeaponMelee_t(0x4F2470);
+
+	GetClientPositionAtTime_t GetClientPositionAtTime = GetClientPositionAtTime_t(0x455960);
+
+	SV_LinkEntity_t SV_LinkEntity = SV_LinkEntity_t(0x4E0880);
+
 	G_LocalizedStringIndex_t G_LocalizedStringIndex = G_LocalizedStringIndex_t(0x4582F0);
 
 	G_DebugLineWithDuration_t G_DebugLineWithDuration = G_DebugLineWithDuration_t(0x4C3280);

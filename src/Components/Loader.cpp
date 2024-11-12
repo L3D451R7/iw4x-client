@@ -3,6 +3,7 @@
 
 #include "Modules/ArenaLength.hpp"
 #include "Modules/Auth.hpp"
+#include "Modules/AntiLag.hpp"
 #include "Modules/Bans.hpp"
 #include "Modules/Bots.hpp"
 #include "Modules/Branding.hpp"
@@ -118,6 +119,7 @@ namespace Components
 
 		Register(new ArenaLength());
 		Register(new AssetHandler());
+		Register(new AntiLag());
 		Register(new Bans());
 		Register(new Bots());
 		Register(new Branding());
