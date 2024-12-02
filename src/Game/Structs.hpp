@@ -11760,6 +11760,16 @@ namespace Game
 		MssStreamReadInfo streamReadInfo[12];
 	};
 
+	struct AntilagClientStore
+	{
+		float realClientAngles[18][3];
+		float realClientPositions[18][3];
+		bool clientMoved[18];
+		void Reset()
+		{
+			memset(this, 0, sizeof(Game::AntilagClientStore));
+		}
+	};
 
 #pragma endregion
 

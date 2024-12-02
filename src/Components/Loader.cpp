@@ -1,6 +1,7 @@
 #include <STDInclude.hpp>
 #include <Utils/InfoString.hpp>
 
+#include "Modules/AntiLag.hpp"
 #include "Modules/ArenaLength.hpp"
 #include "Modules/Auth.hpp"
 #include "Modules/Bans.hpp"
@@ -116,6 +117,7 @@ namespace Components
 
 		Register(new ConfigStrings()); // Needs to be there early !! Before modelcache & weapons
 
+		Register(new AntiLag());
 		Register(new ArenaLength());
 		Register(new AssetHandler());
 		Register(new Bans());
