@@ -397,7 +397,7 @@ namespace Game
 	{
 		DVAR_NONE = 0,	// No flags
 		DVAR_ARCHIVE = 1 << 0,	// Set to cause it to be saved to config_mp.cfg of the client
-		DVAR_LATCH = 1 << 1,	// Will only change when C code next does a Dvar_Get(), so it can't be changed 
+		DVAR_LATCH = 1 << 1,	// Will only change when C code next does a Dvar_Get(), so it can't be changed
 		// without proper initialization. Modified will be set, even though the value hasn't changed yet
 		DVAR_CHEAT = 1 << 2,	// Can not be changed if cheats are disabled
 		DVAR_CODINFO = 1 << 3,	// On change, this is sent to all clients (if you are host)
@@ -11767,6 +11767,19 @@ namespace Game
 		float realVolume[12];
 		int playbackRate[52];
 		MssStreamReadInfo streamReadInfo[12];
+	};
+
+	struct WinVars_t
+	{
+		HINSTANCE__* reflib_library;
+		int reflib_active;
+		HWND__* hWnd;
+		HINSTANCE__* hInstance;
+		int activeApp;
+		int isMinimized;
+		int recenterMouse;
+		HHOOK__* lowLevelKeyboardHook;
+		unsigned int sysMsgTime;
 	};
 
 	struct AntilagClientStore

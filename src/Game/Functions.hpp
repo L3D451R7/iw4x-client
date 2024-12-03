@@ -209,7 +209,7 @@ namespace Game
 	typedef bool(*UI_KeyEvent_t)(int clientNum, int key, int down);
 	extern UI_KeyEvent_t UI_KeyEvent;
 
-	typedef const char* (*UI_SafeTranslateString_t)(const char* reference);
+	typedef const char*(*UI_SafeTranslateString_t)(const char* reference);
 	extern UI_SafeTranslateString_t UI_SafeTranslateString;
 
 	typedef void(*UI_ReplaceConversions_t)(const char* sourceString, ConversionArguments* arguments, char* outputString, size_t outputStringSize);
@@ -542,7 +542,7 @@ namespace Game
 	typedef void(*UI_DrawText_t)(const ScreenPlacement* scrPlace, const char* text, int maxChars, Font_s* font, float x, float y, int horzAlign, int vertAlign, float scale, const float* color, int style);
 	extern UI_DrawText_t UI_DrawText;
 
-	typedef Font_s* (*UI_GetFontHandle_t)(ScreenPlacement* scrPlace, int fontEnum, float scale);
+	typedef Font_s*(*UI_GetFontHandle_t)(ScreenPlacement* scrPlace, int fontEnum, float scale);
 	extern UI_GetFontHandle_t UI_GetFontHandle;
 
 	typedef void(*ScrPlace_ApplyRect_t)(const ScreenPlacement* scrPlace, float* x, float* y, float* w, float* h, int horzAlign, int vertAlign);
@@ -604,6 +604,12 @@ namespace Game
 
 	typedef void(*IN_MouseMove_t)();
 	extern IN_MouseMove_t IN_MouseMove;
+
+	typedef void(*IN_MouseEvent_t)(int flags);
+	extern IN_MouseEvent_t IN_MouseEvent;
+
+	typedef void(*IN_Frame_t)();
+	extern IN_Frame_t IN_Frame;
 
 	typedef void(*IN_Init_t)();
 	extern IN_Init_t IN_Init;
