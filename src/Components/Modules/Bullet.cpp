@@ -88,7 +88,7 @@ namespace Components
 		float spread,
 		Game::weaponParms* wpParms,
 		Game::gentity_s* weaponEnt,
-		int unkBool,
+		Game::PlayerHandIndex handIndex,
 		int gameTime)
 	{
 		Game::AntilagClientStore antiLag_Backup;
@@ -126,8 +126,9 @@ namespace Components
 		}
 
 		uint32_t randomSeed = gameTime;
-		if (unkBool)
+		if (handIndex) {
 			randomSeed = gameTime + 10;
+		}
 
 		BG_srand_Hk(&randomSeed);
 
@@ -145,8 +146,9 @@ namespace Components
 
 			Game::Bullet_Endpos(&randomSeed, spread, bulletContext.endPos, bulletContext.muzzleDir, wpParms, fMinDamageRange);
 
-			if (g_debugBullet.get<int>() == 1)
+			if (g_debugBullet.get<int>() == 1) {
 				Game::G_DebugLineWithDuration(bulletContext.startPos, bulletContext.endPos, ColorWhite, 1, 100);
+			}
 
 			if (Game::BG_WeaponBulletFire_ShouldPenetrate(perks, wpParms->weapDef))
 			{
